@@ -6,6 +6,7 @@ use cursive::{
     menu,
     theme::{BaseColor, BorderStyle, Color},
     traits::*,
+    view::ScrollStrategy,
     views::{Button, Dialog, EditView, LinearLayout, PaddedView, ScrollView, SelectView, TextView},
     Cursive,
 };
@@ -197,7 +198,7 @@ fn pick_object(siv: &mut Cursive, socket: &str, thread_arc: Arc<Mutex<HashMap<St
             .padding_lrtb(1, 1, 1, 0)
             .content(
                 LinearLayout::vertical()
-                    .child(ScrollView::new(TextView::empty().with_name("shellout")))
+                    .child(ScrollView::new(TextView::empty().with_name("shellout")).scroll_strategy(ScrollStrategy::StickToBottom))
                     .child(
                         EditView::new()
                             .on_submit(move |s, cmd| {
